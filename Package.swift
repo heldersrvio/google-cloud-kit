@@ -18,6 +18,7 @@ let package = Package(
                 "PubSub",
                 "SecretManager",
                 "Storage",
+				"AndroidPublisher",
             ]
         ),
         .library(
@@ -48,6 +49,10 @@ let package = Package(
             name: "GoogleCloudPubSub",
             targets: ["PubSub"]
         ),
+		.library(
+			name: "GoogleCloudAndroidPublisher",
+			targets: ["AndroidPublisher"]
+		),
     ],
     dependencies: [
         .package(url: "https://github.com/swift-server/async-http-client.git", from: "1.18.0"),
@@ -104,6 +109,13 @@ let package = Package(
             ],
             path: "PubSub/Sources/"
         ),
+		.target(
+			name: "AndroidPublisher",
+			dependencies: [
+				.target(name: "Core")
+			],
+			path: "AndroidPublisher"
+		),
         .testTarget(
             name: "CoreTests",
             dependencies: [
